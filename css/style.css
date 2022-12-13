@@ -1,0 +1,171 @@
+@charset "UTF-8";
+/*==================================================
+共通　横並びのための設定
+===================================*/
+ul {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.gnavi {
+  display: flex;
+  flex-wrap: wrap; /*スマホ表示折り返し用なのでPCのみなら不要*/
+  margin: 0 0 50px 0;
+  list-style: none;
+}
+.gnavi li a {
+  display: block;
+  padding: 10px 30px;
+  text-decoration: none;
+  color: #8fb7c9;
+}
+.gnavi li {
+  margin-bottom: 20px;
+}
+
+/*==================================================
+　5-3-5 左から右に背景が伸びる
+===================================*/
+/*背景の設定*/
+.gnavi li a {
+  /*背景色の基点とするためrelativeを指定*/
+  position: relative;
+}
+
+.gnavi li a::after {
+  content: "";
+  /*絶対配置で線の位置を決める*/
+  position: absolute;
+  z-index: -1;
+  bottom: 0;
+  left: 0;
+  /*背景の形状*/
+  width: 0;
+  height: 100%;
+  background: #8fb7c9;
+  /*アニメーションの指定*/
+  transition: all 0.5s;
+  opacity: 0; /*はじめは透過0*/
+}
+
+/*現在地とhoverの設定*/
+.gnavi li.current a::after,
+.gnavi li a:hover::after {
+  /*背景の形状*/
+  width: 100%; /*横幅を伸ばす*/
+  opacity: 1; /*不透明に*/
+}
+
+.gnavi li.current a,
+.gnavi li a:hover {
+  color: #fff;
+}
+
+/*========= レイアウトのためのCSS ===============*/
+.lead {
+  padding: 50px 20px;
+}
+
+/*==================================================
+ギャラリーのためのcss
+===================================*/
+.gallery {
+  -moz-columns: 4;
+       columns: 4; /*段組みの数*/
+  padding: 0 15px; /*ギャラリー左右に余白をつける*/
+}
+
+.gallery li {
+  margin-bottom: 20px; /*各画像下に余白をつける*/
+}
+
+/*ギャラリー内のイメージは横幅100%にする*/
+.gallery img {
+  width: 100%;
+  height: auto;
+  vertical-align: bottom; /*画像の下にできる余白を削除*/
+}
+
+/*　横幅900px以下の段組み設定　*/
+@media only screen and (max-width: 900px) {
+  .gallery {
+    -moz-columns: 3;
+         columns: 3;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .gallery {
+    -moz-columns: 2;
+         columns: 2;
+  }
+}
+/*========= レイアウトのためのCSS ===============*/
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: #333;
+}
+
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+h1 {
+  text-align: center;
+  font-size: 5vw;
+  letter-spacing: 0.1em;
+  margin: 30px 0;
+  font-family: "Pacifico", cursive;
+  font-weight: normal;
+  color: #505050;
+}
+
+p {
+  margin: 0 10px 10px 10px;
+  word-wrap: break-word;
+}
+
+/*画像を出現させるアニメーションCSS*/
+.flipLeft {
+  -webkit-animation-name: flipLeft;
+          animation-name: flipLeft;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  perspective-origin: left center;
+  opacity: 0;
+}
+
+@-webkit-keyframes flipLeft {
+  from {
+    transform: perspective(600px) translate3d(0, 0, 0) rotateY(30deg);
+    opacity: 0;
+  }
+  to {
+    transform: perspective(600px) translate3d(0, 0, 0) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes flipLeft {
+  from {
+    transform: perspective(600px) translate3d(0, 0, 0) rotateY(30deg);
+    opacity: 0;
+  }
+  to {
+    transform: perspective(600px) translate3d(0, 0, 0) rotateY(0deg);
+    opacity: 1;
+  }
+}
+.txt_mid {
+  font-size: small;
+  width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}/*# sourceMappingURL=style.css.map */
